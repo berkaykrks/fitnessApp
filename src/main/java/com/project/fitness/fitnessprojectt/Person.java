@@ -14,6 +14,7 @@ public class Person {
     private String phoneNumber;
     private String eMail;
     private Address address;
+    private String secondaryNumber;
     
     private int age;
     private int password;
