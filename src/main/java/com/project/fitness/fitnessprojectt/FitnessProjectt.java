@@ -4,11 +4,6 @@
 
 package com.project.fitness.fitnessprojectt;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
 
 /**
  *
@@ -16,11 +11,9 @@ import org.bson.Document;
  */
 public class FitnessProjectt {
     public static void main(String[] args) { 
-        Register regis = new Register();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Register().setVisible(true);
-                regis.registerUser();
             }
         });
         

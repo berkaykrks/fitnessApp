@@ -4,10 +4,6 @@
  */
 package com.project.fitness.fitnessprojectt;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
 
 /**
  *
@@ -290,12 +286,13 @@ public class Register extends javax.swing.JFrame {
                     .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(textPostal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkbox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(textPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonRegister)
                     .addComponent(buttonSign))
                 .addGap(71, 71, 71))
@@ -354,7 +351,7 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_textSurnameActionPerformed
     public void registerUser() {
         // Registration logic here
-        register();
+        
     }
     
     private void buttonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterActionPerformed
@@ -380,72 +377,7 @@ public class Register extends javax.swing.JFrame {
     private void textStreetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textStreetActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textStreetActionPerformed
-    public void register(){
-        
-    String role = jComboBox1.getSelectedItem().toString();
-    String name = textName.getText();
-    String surname = textSurname.getText();
-    String phone = textPhone.getText();
-    String mail = textMail.getText();
-    String ageStr = textAge.getText();
-    String address = textAddress.getText();
-    String country=textCountry.getText();
-    String city = textCity.getText();
-    String street = textStreet.getText();
-    String postalCode =textPostal.getText();
-    String passwordStr = new String(textPassword.getPassword());
-
-    
-    int age = Integer.parseInt(ageStr);
-    int password = Integer.parseInt(passwordStr);
-
-    Address address2 = new Address(street ,city,postalCode,country);
-    
-    
-    Person person = new Person(name, surname, phone, mail, age, password,address2 );
    
-    
-    
-    if(name.trim().length() > 0){
-        // Connect to MongoDB
-        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://ata:12345@fitnessapp.ssm1bhf.mongodb.net/?retryWrites=true&w=majority")) {
-            // Select the database (Replace 'YourDatabaseName' with your actual database name)
-            MongoDatabase database = mongoClient.getDatabase("berkay");
-
-            // Choose the collection based on the selected role
-            String collectionName = "berkayCollection";
-            switch (role) {
-                case "Admin" -> collectionName = "adminCollection";
-                case "Antrenor" -> collectionName = "antrenorCollection";
-                case "Student" -> collectionName = "studentCollection";
-            
-            }
-
-            database.getCollection(collectionName).insertOne(
-            new Document("role", role)
-                .append("name", name)
-                .append("surname", surname)
-                .append("phone", phone)
-                .append("mail", mail)
-                .append("age", ageStr)
-                .append("address", address)
-                .append("street",street)
-                .append("city",city)
-                .append("postalCode",postalCode)      
-                .append("country",country)                  
-                .append("password", passwordStr)
-            );
-
-            javax.swing.JOptionPane.showMessageDialog(this, "Başarıyla Kayıt Olundu. Hoşgeldin "+name);
-        } catch (Exception e2) {
-            e2.printStackTrace();
-        }
-    }
-    else{
-        javax.swing.JOptionPane.showMessageDialog(this, "Kutucukları Boş geçemezsiniz.");
-    }
-    
-    }
     /**
      * @param args the command line arguments
      */
