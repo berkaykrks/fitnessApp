@@ -6,6 +6,8 @@ package com.project.fitness.fitnessprojectt;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+import static javax.swing.DropMode.INSERT;
 
 /**
  *
@@ -393,7 +395,14 @@ public class Register extends javax.swing.JFrame {
             // Veritabanına bağlanma
             Connection connection = DriverManager.getConnection(url, username, password);
             System.out.println("Bağlantı başarılı.");
-
+            
+            String sql = "INSERT INTO Person(textName.getText(),textSurname.getText(),textPhone.getText(),textMail.getText(),textAddress.getText(),textAge.getText(),textPassword.getText())"; 
+            try (Statement statement = connection.createStatement()) {
+                int rowsInserted = statement.executeUpdate(sql);
+                if (rowsInserted > 0) {
+                    System.out.println("Veri başarıyla eklendi!");
+                }
+            }
             // Bağlantıyı kapatma
             connection.close();
         } catch (ClassNotFoundException e2) {
