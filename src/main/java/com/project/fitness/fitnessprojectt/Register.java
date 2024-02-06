@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.project.fitness.fitnessprojectt;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -357,7 +359,8 @@ public class Register extends javax.swing.JFrame {
     private void buttonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterActionPerformed
         registerUser();
     }//GEN-LAST:event_buttonRegisterActionPerformed
-
+    
+    
     private void buttonSignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSignActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonSignActionPerformed
@@ -378,6 +381,29 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textStreetActionPerformed
    
+    public void register(){
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=Fitness;user=sa;password=123;trustServerCertificate=true";
+        String username = "sa";
+        String password = "123";
+
+        try {
+            // JDBC sürücüsünü yükleme
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+            // Veritabanına bağlanma
+            Connection connection = DriverManager.getConnection(url, username, password);
+            System.out.println("Bağlantı başarılı.");
+
+            // Bağlantıyı kapatma
+            connection.close();
+        } catch (ClassNotFoundException e2) {
+            System.err.println("JDBC sürücüsü bulunamadı.");
+            e2.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("Veritabanına bağlanırken bir hata oluştu.");
+            e.printStackTrace();
+        }
+    }
     /**
      * @param args the command line arguments
      */
