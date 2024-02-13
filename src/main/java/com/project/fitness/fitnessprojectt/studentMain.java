@@ -87,7 +87,7 @@ public class studentMain extends javax.swing.JFrame {
         belLabel.setBackground(new java.awt.Color(255, 255, 255));
         belLabel.setFont(new java.awt.Font("Terminator Two", 0, 14)); // NOI18N
         belLabel.setForeground(new java.awt.Color(131, 121, 11));
-        belLabel.setText("Bel: 79 CM");
+        belLabel.setText("Bel: 79 Cm");
         rightPanel.add(belLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, -1, 20));
 
         jLabel1.setFont(new java.awt.Font("Terminator Two", 0, 14)); // NOI18N
